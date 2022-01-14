@@ -10,5 +10,7 @@ This repository provides data and R scripts used in our paper "Bayesian Ensemble
 
 
 ### Code files
+S1 - SampleCumulativeSales-M.R --- Sample net cumulative sales. Method is provided in Section A.7 of the paper.
+
 
 
