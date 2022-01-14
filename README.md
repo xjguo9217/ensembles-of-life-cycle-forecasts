@@ -10,7 +10,7 @@ This repository provides data and R scripts used in our paper "Bayesian Ensemble
 | Data set| Descriptions |
 | --- | --- | 
 | dell_data_raw.csv  | Normalized sales without end-of-life orders truncated (Acimovic et al. 2018). This data is used to simulate net cumulative sales (M). |
-| dell_data_truncated.csv| Standardized sales with end-of-life orders truncated. The truncated time series are used in Hu et al.(2018) for forecasting computer sales. We unnormalize a normalized product life cycle multiplying the series by the sampled cumulative sales M.|
+| dell_data_truncated.csv| Standardized sales with end-of-life orders truncated. The truncated time series are used in Hu et al.(2018) for forecasting computer sales.|
 | weekly_M.csv | A data file created by running "S1 - SampleCumulativeSales - M.R". This file stores the simulated net cumulative sales (M).
 
 
