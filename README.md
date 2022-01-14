@@ -1,5 +1,14 @@
 # Bayesian Ensembles of Exponentially Smoothed Life-Cycle Forecasts
 
-This repos provides data and R scripts used in our paper "Bayesian Ensembles of Exponentially Smoothed Life-Cycle Forecasts". Below is a list of the files and some descriptions of these files.
+This repository provides data and R scripts used in our paper "Bayesian Ensembles of Exponentially Smoothed Life-Cycle Forecasts". Below is the list and descriptions of the files.
+
+## Study 1: Social Networks 
+
+
+## Study 2: Computer Sales
+### Data files
+
+
+### Code files
 
 
