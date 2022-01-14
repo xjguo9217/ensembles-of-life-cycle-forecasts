@@ -14,4 +14,10 @@ dell_data_raw.csv --- Standardized sales without end-of-life orders truncated (A
 S1 - SampleCumulativeSales-M.R --- Sample net cumulative sales. Method is provided in Section A.7 of the paper.
 
 
+| --- | --- | --- |
+| Stretch/Untouched | ProbDistribution | Accuracy |
+| --- | --- | --- |
+| Stretched | Gaussian | .843 |
+
+
 
