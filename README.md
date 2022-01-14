@@ -14,7 +14,7 @@ dell_data_raw.csv --- Standardized sales without end-of-life orders truncated (A
 S1 - SampleCumulativeSales-M.R --- Sample net cumulative sales. Method is provided in Section A.7 of the paper.
 
 
-| --- | --- |
+
 | Data set| Descriptions |
 | dell_data_raw.csv  | Standardized sales without end-of-life orders truncated (Acimovic et al. 2018). This data is used to simulate net cumulative sales (M). |
 | --- | --- |
