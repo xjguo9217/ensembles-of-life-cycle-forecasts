@@ -20,4 +20,9 @@ S1 - SampleCumulativeSales-M.R --- Sample net cumulative sales. Method is provid
 | --- | --- |
 
 
+| Stretch/Untouched | ProbDistribution | Accuracy |
+| --- | --- | --- |
+| Stretched | Gaussian | .843 |
+
+
 
