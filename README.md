@@ -2,11 +2,11 @@
 
 This repository provides data and R scripts used in our paper "Bayesian Ensembles of Exponentially Smoothed Life-Cycle Forecasts". <br />
 <br />
-Data:<br />
+### Data:<br />
 Google search interests of social networking websites <br />
 Dell computer sales (Acimovic et al. 2018)<br />
 <br />
-Forecasting methods:<br />
+### Forecasting methods:<br />
 Bayesian ensembles of single model type: <br />
 Bass<br />
 Gamma/shifted Gompertz (GSG)<br />
