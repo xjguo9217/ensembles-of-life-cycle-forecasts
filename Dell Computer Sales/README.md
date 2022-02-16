@@ -3,7 +3,7 @@
 This folder contains the following R scripts and data files:
 
 dell_data_raw.csv: Raw sales data of Dell computers. This data is used for sampling cumulative sales M. <br />
-dell_data_truncated.csv: Truncated end-of-life sales of Dell computers. This data is used as the life cycles of the computers.
+dell_data_truncated.csv: Truncated end-of-life sales of Dell computers. This data is used to construct life cycles of the computers.<br />
 The above two data sets were published in Acimovic et al. (2018).<br />
 weekly_M.csv: Sampled cumulative sales M from running the R file "Computer sales - Sample cumulative sales M.R". <br />
 <br /> 
