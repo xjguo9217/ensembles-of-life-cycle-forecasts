@@ -24,7 +24,7 @@ Tilted-Gompertz model updated using Kalman Filter<br />
 Quantile Regression Forest<br />
 LightGBM<br />
 <br />
-### Reference
+### Reference:
 Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2018. Product life cycle data set: Raw and cleaned data of weekly orders for personal computers. Manufacturing & Service Operations Management
 
 
