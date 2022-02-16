@@ -8,8 +8,8 @@ Dell computer sales (Acimovic et al. 2018)<br />
 <br />
 Forecasting methods:<br />
 Bayesian ensembles of single model type: <br />
-1.Bass<br />
-2.Gamma/shifted Gompertz (GSG)<br />
+1. Bass<br />
+2. Gamma/shifted Gompertz (GSG)<br />
 3. Trapezoid (Trap)<br />
 4. Tilted-Gompertz (TiGo)<br />
 5. Tilted-Gomertz updated using exponential smoothing (TiGo-ETS)<br />
