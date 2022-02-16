@@ -4,7 +4,7 @@ This folder contains the following R scripts and data files:
 
 GoogleTrendsTimeSeriesSocial-May-2021.csv: Search interests of 161 social networking websites. <br />
 WikiListSocial-startenddays-May-2021.csv: Start and end dates of the social networking websites. <br />
-Social networks list - Wikipedia - May 2021.xlsx: List of social networks studied in the paper.
+Social networks list - Wikipedia - May 2021.xlsx: List of social networks studied in the paper.<br />
 <br /> 
 Source code: This folder contains the source code for fitting and predicting from the Bass, GSG, Trap and TiGo-ETS models.<br />
 <br /> 
