@@ -19,4 +19,4 @@ Computer sales - Ensemble of four TI diffusion models: Produce Bayesian ensemble
 Computer sales - Ensemble of all five models: Produce Bayesian ensemble forecasts using multiple model types (Bass, GSG, Trap, TiGo (time-invariant) and TiGo-ETS)<br /> 
 
 ### Reference
-Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2018. Product life cycle data set: Raw andcleaned data of weekly orders for personal computers.Manufacturing & Service Operations Management
+Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2018. Product life cycle data set: Raw and cleaned data of weekly orders for personal computers. Manufacturing & Service Operations Management
