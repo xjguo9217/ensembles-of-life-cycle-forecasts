@@ -205,14 +205,6 @@ for (i in 1:161) {
     for (mm in 1:99) {
       accuracy_result[i,t+1,1:ntest,mm] <- pinball(forecast_ntest[,mm], ytest, mm/100)
     }
-    min_lim <- min(forecast_ntest,ytrain,ytest)
-    max_lim <- max(forecast_ntest,ytrain,ytest)
-    plot(c(ytrain,ytest),main = paste(i,"-", t, "-", ntest),type='l',ylim=c(min_lim,max_lim))
-    lines((t+1):(t+ntest),forecast_ntest[,5],col='blue')
-    lines((t+1):(t+ntest),forecast_ntest[,25],col='blue')
-    lines((t+1):(t+ntest),forecast_ntest[,50],col='red')
-    lines((t+1):(t+ntest),forecast_ntest[,75],col='blue')
-    lines((t+1):(t+ntest),forecast_ntest[,95],col='blue')
   }
 }
 
