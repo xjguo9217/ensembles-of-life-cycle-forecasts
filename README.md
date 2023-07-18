@@ -13,6 +13,7 @@ Gamma/shifted Gompertz (GSG)<br />
 Trapezoid (Trap)<br />
 Tilted-Gompertz (TiGo)<br />
 Tilted-Gomertz updated using exponential smoothing (TiGo-ETS)<br />
+Exponential smoothing state space model with Box-Cox transformation, ARMA errors, Trend and Seasonal components (TBATS)
 <br />
 Bayesian ensembles of multiple model types: <br />
 Bass, GSG, Trap and TiGo<br />
