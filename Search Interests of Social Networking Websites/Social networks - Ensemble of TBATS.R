@@ -223,31 +223,4 @@ result_vec <- t(2*c(mean(rowMeans(apply(accuracy_result[,,1:12,50],c(1,3),mean,n
                     mean(rowMeans(apply(apply(accuracy_result[,,13:24,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)))
 colnames(result_vec) <- c('1-12 steps MAE','1-12 steps CRPS','13-24 steps MAE','13-24 steps CRPS')
 
-# split to train/test data
-start_allts <- as.Date('2004-01-01')
-end_allts <- as.Date('2021-06-01')
-n_train <- round(interval(start_allts, end_allts) %/% months(1)/2)
-end_train <- start_allts + months(n_train)
-end_train_ts <- interval(start, end_train) %/% months(1)+1
-
-accuracy_train <- array(NA,dim = c(161,209,24,99))
-accuracy_test <- array(NA,dim = c(161,209,24,99))
-for (i in 1:161) {
-  this_end_train <- end_train_ts[i]
-  if (this_end_train <= 1) {
-    accuracy_test[i,,,] <- accuracy_result[i,,,] 
-  } else {
-    accuracy_train[i,1:(this_end_train-1),,] <- accuracy_result[i,1:(this_end_train-1),,] 
-    accuracy_test[i,this_end_train:209,,] <- accuracy_result[i,this_end_train:209,,] 
-  }
-}
-
-# Print out average accuracy results
-result_vec <- t(c(2*mean(rowMeans(apply(accuracy_result[,,1:12,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                  mean(rowMeans(apply(apply(accuracy_result[,,1:12,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                  2*mean(rowMeans(apply(accuracy_result[,,13:24,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                  mean(rowMeans(apply(apply(accuracy_result[,,13:24,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)))
-colnames(result_vec) <- c('1-12 steps MAE','1-12 steps CRPS','13-24 steps MAE','13-24 steps CRPS')
-
 result_vec
-result_traintest
