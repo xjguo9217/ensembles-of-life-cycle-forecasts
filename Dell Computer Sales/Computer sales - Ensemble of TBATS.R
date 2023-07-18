@@ -198,35 +198,5 @@ result_vec <- t(2*c(mean(rowMeans(apply(accuracy_result[,,1:8,50],c(1,3),mean,na
                     mean(rowMeans(apply(apply(accuracy_result[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)))
 colnames(result_vec) <- c('1-8 steps MAE','1-8 steps CRPS','9-17 steps MAE','9-17 steps CRPS')
 
-# split the results for training and testing set
-start_allts <- min(start)
-end_allts <- max(end)
-n_train <- round(interval(start_allts, end_allts) %/% weeks(1)/2)
-end_train <- min(start) + weeks(n_train)
-
-end_train_ts <- interval(start, end_train) %/% weeks(1)+1
-
-accuracy_train <- array(NA,dim = c(170,82,17,99))
-accuracy_test <- array(NA,dim = c(170,82,17,99))
-for (i in 1:170) {
-  this_end_train <- end_train_ts[i]
-  if (this_end_train <= 1) {
-    accuracy_test[i,,1:17,] <- accuracy_result[i,,1:17,] 
-  } else {
-    if (this_end_train > 82) {
-      accuracy_train[i,,1:17,] <- accuracy_train[i,,1:17,] 
-    } else {
-      accuracy_train[i,1:(this_end_train-1),1:17,] <- accuracy_result[i,1:(this_end_train-1),1:17,] 
-      accuracy_test[i,this_end_train:82,1:17,] <- accuracy_result[i,this_end_train:82,1:17,] 
-    }
-  }
-}
-
-result_traintest <- t(c(2*c(mean(rowMeans(apply(apply(accuracy_train[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                            mean(rowMeans(apply(apply(accuracy_test[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)),
-                        2*c(mean(rowMeans(apply(apply(accuracy_train[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                            mean(rowMeans(apply(apply(accuracy_test[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE))))
-colnames(result_traintest) <- c("1-12 steps training","1-12 steps testing","13-24 steps training","13-24 steps testing")
-
 result_vec
-result_traintest
+
