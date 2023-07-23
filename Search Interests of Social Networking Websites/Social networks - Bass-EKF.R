@@ -161,6 +161,7 @@ for (i in 1:161) {
       n_change <- c(n_change,j)
     }
   }
+  if (is.null(n_change)) next
   # For each period between two changing points, generate forecasts from the Bass-EKF model
   for (aaa in 2:(length(n_change)+1)) {
     if (aaa == (length(n_change)+1)) {
