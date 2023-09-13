@@ -8,10 +8,11 @@
 # Candidate models considered here include the Bass, Gamma/shifted Gompertz and Trapezoid models.
 
 # Choose a model
-model_select <- "Bass" # This can be set to Bass, GSG, Trap or TiGoTI
+model_select <- 'TiGoTI' # This can be set to Bass, GSG, Trap or TiGoTI
 
 # Load in the lubridate package
 library(lubridate)
+library(Metrics)
 options(warn=-1)
 
 # Load in data and unnormalize the normalized life cycles
@@ -26,12 +27,11 @@ for (i in 1:170) {
 quant <- quant <- seq(0.01,0.99,0.01) # we consider 99 quantiles in model evaluation.
 
 # Load in functions for the selected candidate model.
-if (model_select == 'Bass') source('Bass.R')
-if (model_select == 'GSG') source('GSG.R')
-if (model_select == 'Trap') source('Trap.R')
+if (model_select == 'Bass') source('Source Code/Bass.R')
+if (model_select == 'GSG') source('Source Code/GSG.R')
+if (model_select == 'Trap') source('Source Code/Trap.R')
 if (model_select == 'TiGoTI') {
-  source('TiGo-ETS.R')
-  alpha=0; beta=0
+  source('Source Code/TiGoNLS.R')
 }
 
 # Set up a function for calculating the pinball loss
@@ -48,6 +48,7 @@ end <- strptime(data1[,2],"%Y-%m-%d",tz = 'GMT')
 
 # Fit the selected model to all time series using the Maximum Likelihood Estimation approach.
 # For each of the 170 time series, then generate 82 steps ahead forecasts (the max length of the time series in the data set is 82) from time 0. Since these models are time invariant, 1-h step-ahead forecasts generated at time t are equal to t+1 - t+h step-ahead forecasts generated at time 0. 
+par(mfrow=c(3,4))
 candidateForecasts <- matrix(NA,170, 82)
 sigma2Values <- rep(NA,170)
 min_value <-matrix(NA,170, 82)
@@ -60,7 +61,7 @@ for (j in 1:170) {
   if (model_select == 'Bass')  fitModel <- Bass.fit(y)
   if (model_select == 'GSG')   fitModel <- GSG.fit(y)
   if (model_select == 'Trap') fitModel <- Trapezoid.fit(y)
-  if (model_select == 'TiGoTI') fitModel <- TiGo.ETS(y,alpha=0,beta=0)
+  if (model_select == 'TiGoTI') fitModel <- TiGo.NLS(y)
   sigma2Values[j] <- (fitModel$sigma)^2 # Store the variance of the errors to sigma2Values
   # If the model suggests that the product has not passed its peak, we remove this product from the ensemble
   if (which.max(fitModel$fit.y) == length(fitModel$fit.y)) n_drop <- c(n_drop, j)
@@ -69,13 +70,14 @@ for (j in 1:170) {
   if (model_select == 'Bass')  forecasts_j <- forecast.Bass(fitModel,82,level = 99.9)$predictions
   if (model_select == 'GSG')  forecasts_j <- forecast.GSG(fitModel,82,level = 99.9)$predictions
   if (model_select == 'Trap')  forecasts_j <- forecast.Trapezoid(fitModel,82,level = 99.9)$predictions
-  if (model_select == 'TiGoTI')  forecasts_j <- forecast.TiGo.ETS(fitModel,82,level = 99.9)$predictions[,-c(2,3)]
+  if (model_select == 'TiGoTI')  forecasts_j <- forecast.TiGo(fitModel,82,level = 99.9)$predictions
   candidateForecasts[j,1:82] <- forecasts_j[,1] # Store point forecasts to candidateForecasts
   min_value[j,] <- forecasts_j[,2] # Store the 0.1% and 99.9% quantiles 
   max_value[j,] <- forecasts_j[,3] # Later we will use these values to calculate ensemble quantiles
 }
 
 # Set up the accuracy matrix
+par(mfrow=c(3,4))
 accuracy_result <- array(NA,dim = c(170,82,34,99))
 n_drop <- unique(n_drop)
 
@@ -185,9 +187,10 @@ for (i in 1:170) {
 }
 
 # Print out average accuracy results
-result_vec <- t(as.matrix(2*c(mean(rowMeans(apply(accuracy_result[,,1:8,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-    mean(rowMeans(apply(apply(accuracy_result[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-  mean(rowMeans(apply(accuracy_result[,,9:17,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-  mean(rowMeans(apply(apply(accuracy_result[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE))))
-colnames(result_vec) <- c('1-8 steps MAE','1-8 steps CRPS','9-17 steps MAE','9-17 steps CRPS')
+accuracy_result[which(accuracy_result == Inf)] <- NA
+result_vec <- t(2*c(mean(rowMeans(apply(accuracy_result[,,1:8,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
+                    mean(rowMeans(apply(apply(accuracy_result[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
+                    mean(rowMeans(apply(accuracy_result[,,9:17,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
+                    mean(rowMeans(apply(apply(accuracy_result[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)))
+colnames(result_vec) <- c("1-8 steps MAE","1-8 steps MCRPS","9-17 steps MAE","9-17 steps MCRPS")
 result_vec
