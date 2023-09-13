@@ -1,4 +1,5 @@
 ## Forecasting Demand of Intel Microprocessors
+Code for the Bayesian Functional Regression used in the paper is not uploaded here. The code file has been shared privately by the authors of Lei et al. (2023).)
 
 This folder contains the following R scripts and data files:
 
