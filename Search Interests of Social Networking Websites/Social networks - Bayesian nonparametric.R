@@ -65,7 +65,7 @@ for (i in 1:161) {
   }
 }
 
-accuracy_result <- array(NA,dim = c(161,209,24,100))
+accuracy_result <- array(NA,dim = c(161,209,24,99))
 
 # Stan code from Web Appendix C of Dew et al. (2018)
 stanmodelcode <- '
