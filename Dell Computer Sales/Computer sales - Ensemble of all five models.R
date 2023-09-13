@@ -8,6 +8,7 @@
 
 # Load in the lubridate package
 library(lubridate)
+library(Metrics)
 options(warn=-1)
 
 # Load in data and unnormalize the normalized life cycles
@@ -22,10 +23,11 @@ for (i in 1:170) {
 quant <- quant <- seq(0.01,0.99,0.01) # we consider 99 quantiles in model evaluation.
 
 # Load in functions for the selected candidate model.
-source('Bass.R')
-source('GSG.R')
-source('Trap.R')
-source('TiGo-ETS.R')
+source('Source Code/Bass.R')
+source('Source Code/GSG.R')
+source('Source Code/Trap.R')
+source('Source Code/TiGo-NLS.R')
+source('Source Code/TiGo-ETS.R')
 alpha=0.3; beta=0.0003
 
 # Set up a function for calculating the pinball loss
@@ -63,7 +65,7 @@ for (j in 1:170) {
   fitModel_bass <- Bass.fit(y)
   fitModel_gsg <- GSG.fit(y)
   fitModel_trap <- Trapezoid.fit(y)
-  fitModel_tigo <- TiGo.ETS(y,alpha=0,beta=0)
+  fitModel_tigo <- TiGo.NLS(y)
   fitModel_ets <- TiGo.ETS(y,alpha=alpha,beta=beta)
   par_vec[j,] <- fitModel_ets$par[3:6] # store parameters
   sigma2Values_bass[j] <- (fitModel_bass$sigma)^2 # Store the variance of the errors to sigma2Values
@@ -81,7 +83,7 @@ for (j in 1:170) {
   forecasts_bass_j <- forecast.Bass(fitModel_bass,82,level = 99.9)$predictions
   forecasts_gsg_j <- forecast.GSG(fitModel_gsg,82,level = 99.9)$predictions
   forecasts_trap_j <- forecast.Trapezoid(fitModel_trap,82,level = 99.9)$predictions
-  forecasts_tigo_j <- forecast.TiGo.ETS(fitModel_tigo,82,level = 99.9)$predictions[,-c(2,3)]
+  forecasts_tigo_j <- forecast.TiGo(fitModel_tigo,82,level = 99.9)$predictions
   candidateForecasts_bass[j,1:82] <- forecasts_bass_j[,1] # Store point forecasts to candidateForecasts
   candidateForecasts_gsg[j,1:82] <- forecasts_gsg_j[,1] 
   candidateForecasts_trap[j,1:82] <- forecasts_trap_j[,1] 
@@ -92,9 +94,11 @@ for (j in 1:170) {
 TiGoModel1 <- fitModel_ets
 
 # Set up the accuracy matrix
-accuracy_result <- array(NA,dim = c(170,82,24,99))
+accuracy_result <- array(NA,dim = c(170,82,24,100))
 n_drop <- unique(n_drop)
 
+n1 = 0
+n2 = 0
 # Calculate Bayesian ensembles and evaluate accuracy
 for (i in 1:170) {
   y1 <- as.numeric(timeSeriesDell[i,])
@@ -233,13 +237,18 @@ for (i in 1:170) {
     for (mm in 1:99) {
       accuracy_result[i,t+1,1:ntest,mm] <- pinball(forecast_ntest[,mm], ytest, mm/100)
     }
+    if (which.max(weights)%in%c((length(n_complete)*4+1):(length(n_complete)*5))) n1 = n1+1
+    n2 = n2+1
+    accuracy_result[i,t+1,1:ntest,100] <- sapply(1:ntest,function(x) smape(ytest[x],forecast_ntest[x,50]))
   }
 }
 
 # Print out average accuracy results
-result_vec <- t(as.matrix(2*c(mean(rowMeans(apply(accuracy_result[,,1:8,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                              mean(rowMeans(apply(apply(accuracy_result[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                              mean(rowMeans(apply(accuracy_result[,,9:17,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                              mean(rowMeans(apply(apply(accuracy_result[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE))))
-colnames(result_vec) <- c('1-8 steps MAE','1-8 steps CRPS','9-17 steps MAE','9-17 steps CRPS')
+result_vec <- t(2*c(mean(rowMeans(apply(accuracy_result[,,1:8,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
+                    mean(rowMeans(apply(accuracy_result[,,1:8,100],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)/2,
+                    mean(rowMeans(apply(apply(accuracy_result[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
+                    mean(rowMeans(apply(accuracy_result[,,9:17,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
+                    mean(rowMeans(apply(accuracy_result[,,9:17,100],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)/2,
+                    mean(rowMeans(apply(apply(accuracy_result[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)))
+colnames(result_vec) <- c("1-12 steps MAE","1-12 steps MAPE","1-12 steps MCRPS","13-24 steps MAE","13-24 steps MAPE","13-24 steps MCRPS")
 result_vec
