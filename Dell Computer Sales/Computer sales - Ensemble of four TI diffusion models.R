@@ -9,7 +9,6 @@
 
 # Load in the lubridate package
 library(lubridate)
-library(Metrics)
 options(warn=-1)
 
 # Load in functions for the selected candidate model.
