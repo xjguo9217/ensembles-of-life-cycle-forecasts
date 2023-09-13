@@ -29,7 +29,7 @@ Quantile Regression Forest<br />
 LightGBM<br />
 <br />
 ### Reference:
-Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2019. Product life cycle data set: Raw and cleaned data of weekly orders for personal computers. Manufacturing & Service Operations Management 21(1) 171–176.<br />
+Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2019. Product life cycle data set: Raw and cleaned data of weekly orders for personal computers. Manufacturing & Service Operations Management 21(1) 171–176.
 
 <br />
 Lei D, Hu H, Geng D, Zhang J, Qi Y, Liu S, Shen ZM. 2023. New product life cycle curve modeling and forecasting with product attributes and promotion: A bayesian functional approach. Production and Operations Management 32(2) 655–673.
