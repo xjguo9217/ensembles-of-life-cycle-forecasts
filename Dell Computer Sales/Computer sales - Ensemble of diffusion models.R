@@ -47,7 +47,6 @@ end <- strptime(data1[,2],"%Y-%m-%d",tz = 'GMT')
 
 # Fit the selected model to all time series using the Maximum Likelihood Estimation approach.
 # For each of the 170 time series, then generate 82 steps ahead forecasts (the max length of the time series in the data set is 82) from time 0. Since these models are time invariant, 1-h step-ahead forecasts generated at time t are equal to t+1 - t+h step-ahead forecasts generated at time 0. 
-par(mfrow=c(3,4))
 candidateForecasts <- matrix(NA,170, 82)
 sigma2Values <- rep(NA,170)
 min_value <-matrix(NA,170, 82)
