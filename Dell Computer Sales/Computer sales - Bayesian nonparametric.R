@@ -166,7 +166,7 @@ for (i in 1:170) {
                refresh = 0,verbose=TRUE)
     }
     samples <- sflist2stanfit(ret)
-    inv_log <- extract(samples)$alpha_long#+extract(samples)$alpha_short #extract(samples)$alpha_week++ extract(samples)$delta
+    inv_log <- extract(samples)$alpha_long
     if (j > 1) {
       fit <- inv.logit(apply(inv_log[,1:ntrain],2,median)[1:ntrain])*mm
     } else {
