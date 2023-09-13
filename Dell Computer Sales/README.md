@@ -17,6 +17,9 @@ Computer sales - TiGo-KF: Produce forecasts using the TiGo model updated by Kalm
 Computer sales - Machine learning models: Produce forecasts using the Quantile Regression Forest or LightGBM.<br /> 
 Computer sales - Ensemble of four TI diffusion models: Produce Bayesian ensemble forecasts using multiple time-invariant model types (Bass, GSG, Trap and TiGo (time-invariant))<br /> 
 Computer sales - Ensemble of all five models: Produce Bayesian ensemble forecasts using multiple model types (Bass, GSG, Trap, TiGo (time-invariant) and TiGo-ETS)<br /> 
+Computer sales - Bayesian nonparametric: Produce forecasts from the Bayesian nonparametric model proposed in Dew et al. (2018)
 
 ### Reference
-Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2018. Product life cycle data set: Raw and cleaned data of weekly orders for personal computers. Manufacturing & Service Operations Management
+Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2018. Product life cycle data set: Raw and cleaned data of weekly orders for personal computers. Manufacturing & Service Operations Management.
+
+Dew R, Ansari A. 2018. Bayesian nonparametric customer base analysis with model-based visualizations. Marketing Science 37(2) 216–235.
