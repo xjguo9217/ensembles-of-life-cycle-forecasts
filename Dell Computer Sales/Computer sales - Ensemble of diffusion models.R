@@ -12,7 +12,6 @@ model_select <- 'Bass' # This can be set to Bass, GSG, Trap or TiGoTI
 
 # Load in the lubridate package
 library(lubridate)
-library(Metrics)
 options(warn=-1)
 
 # Load in data and unnormalize the normalized life cycles
