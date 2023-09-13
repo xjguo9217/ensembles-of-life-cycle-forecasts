@@ -9,14 +9,14 @@
 
 # Load in the lubridate package
 library(lubridate)
+library(Metrics)
 options(warn=-1)
 
 # Load in functions for the selected candidate model.
-source('Bass.R')
-source('GSG.R')
-source('Trap.R')
-source('TiGo-ETS.R')
-alpha=0; beta=0
+source('Source Code/Bass.R')
+source('Source Code/GSG.R')
+source('Source Code/Trap.R')
+source('Source Code/TiGo-NLS.R')
 
 # Load in data and unnormalize the normalized life cycles
 data1 <- read.csv('dell_data_truncated.csv')
@@ -61,7 +61,7 @@ for (j in 1:170) {
   fitModel_bass <- Bass.fit(y)
   fitModel_gsg <- GSG.fit(y)
   fitModel_trap <- Trapezoid.fit(y)
-  fitModel_tigo <- TiGo.ETS(y,alpha=0,beta=0)
+  fitModel_tigo <- TiGo.NLS(y)
   sigma2Values_bass[j] <- (fitModel_bass$sigma)^2 # Store the variance of the errors to sigma2Values
   sigma2Values_gsg[j] <- (fitModel_gsg$sigma)^2
   sigma2Values_trap[j] <- (fitModel_trap$sigma)^2
@@ -76,7 +76,7 @@ for (j in 1:170) {
   forecasts_bass_j <- forecast.Bass(fitModel_bass,82,level = 99.9)$predictions
   forecasts_gsg_j <- forecast.GSG(fitModel_gsg,82,level = 99.9)$predictions
   forecasts_trap_j <- forecast.Trapezoid(fitModel_trap,82,level = 99.9)$predictions
-  forecasts_tigo_j <- forecast.TiGo.ETS(fitModel_tigo,82,level = 99.9)$predictions[,-c(2,3)]
+  forecasts_tigo_j <- forecast.TiGo(fitModel_tigo,82,level = 99.9)$predictions
   candidateForecasts_bass[j,1:82] <- forecasts_bass_j[,1] # Store point forecasts to candidateForecasts
   candidateForecasts_gsg[j,1:82] <- forecasts_gsg_j[,1] 
   candidateForecasts_trap[j,1:82] <- forecasts_trap_j[,1] 
@@ -195,9 +195,9 @@ for (i in 1:170) {
 }
 
 # Print out average accuracy results
-result_vec <- t(as.matrix(2*c(mean(rowMeans(apply(accuracy_result[,,1:8,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                              mean(rowMeans(apply(apply(accuracy_result[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                              mean(rowMeans(apply(accuracy_result[,,9:17,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                              mean(rowMeans(apply(apply(accuracy_result[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE))))
-colnames(result_vec) <- c('1-8 steps MAE','1-8 steps CRPS','9-17 steps MAE','9-17 steps CRPS')
+result_vec <- t(2*c(mean(rowMeans(apply(accuracy_result[,,1:8,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
+                    mean(rowMeans(apply(apply(accuracy_result[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
+                    mean(rowMeans(apply(accuracy_result[,,9:17,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
+                    mean(rowMeans(apply(apply(accuracy_result[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)))
+colnames(result_vec) <- c("1-8 steps MAE","1-8 steps MCRPS","9-17 steps MAE","9-17 steps MCRPS")
 result_vec
