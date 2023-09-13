@@ -15,6 +15,7 @@ Social networks - TiGo-KF: Produce forecasts using the TiGo model updated by Kal
 Social networks - Machine learning models: Produce forecasts using the Quantile Regression Forest or LightGBM.<br /> 
 Social networks - Ensemble of four TI diffusion models: Produce Bayesian ensemble forecasts using multiple model types (Bass, GSG, Trap and TiGo (time-invariant))<br /> 
 Social networks - Ensemble of all five models: Produce Bayesian ensemble forecasts using multiple model types (Bass, GSG, Trap, TiGo (time-invariant) and TiGo-ETS)<br /> 
+Social networks - Bayesian nonparametric: Produce forecasts from the Bayesian nonparametric model proposed in Dew et al. (2018)<br /> 
 
 
 
