@@ -114,7 +114,6 @@ y ~ bernoulli_logit(theta[1:(M-pred_h)]);
 stanModel <- stan_model(model_code = stanmodelcode)
 
 # Produce forecasts
-par(mfrow=c(2,3))
 for (i in 1:170) {
   y1 <- as.numeric(timeSeriesDell[i,])
   y <- na.omit(y1)
