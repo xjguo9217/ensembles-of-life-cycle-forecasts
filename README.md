@@ -19,13 +19,16 @@ Bayesian ensembles of multiple model types: <br />
 Bass, GSG, Trap and TiGo<br />
 Bass, GSG, Trap, TiGo and TiGo-ETS<br />
 <br />
-Other approaches:<br />
+Bayesian updating approaches:
 Bass model updated using Extended Kalman Filter with Continuous State and Discrete Observations<br />
 Tilted-Gompertz model updated using Kalman Filter<br />
+Bayesian Functional Regression (This benchmark model used in the paper is not uploaded here. The code file has been shared privately by the authors of Lei et al. (2023).)
+Other approaches:<br />
 Quantile Regression Forest<br />
 LightGBM<br />
 <br />
 ### Reference:
-Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2018. Product life cycle data set: Raw and cleaned data of weekly orders for personal computers. Manufacturing & Service Operations Management
+Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2018. Product life cycle data set: Raw and cleaned data of weekly orders for personal computers. Manufacturing & Service Operations Management.
+Lei D, Hu H, Geng D, Zhang J, Qi Y, Liu S, Shen ZM. 2023. New product life cycle curve modeling and forecasting with product attributes and promotion: A bayesian functional approach. Production and Operations Management 32(2) 655–673.
 
 
