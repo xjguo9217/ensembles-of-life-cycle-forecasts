@@ -24,6 +24,8 @@ Bass model updated using Extended Kalman Filter with Continuous State and Discre
 Tilted-Gompertz model updated using Kalman Filter<br />
 Bayesian Functional Regression (This benchmark model used in the paper is not uploaded here. The code file has been shared privately by the authors of Lei et al. (2023).)<br />
 <br />
+Bayesian non-parametric model (Based on code provided in Dew et al. 2018)<br />
+<br />
 Other approaches:<br />
 Quantile Regression Forest<br />
 LightGBM<br />
@@ -33,5 +35,8 @@ Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2019. Product life cycle d
 
 <br />
 Lei D, Hu H, Geng D, Zhang J, Qi Y, Liu S, Shen ZM. 2023. New product life cycle curve modeling and forecasting with product attributes and promotion: A bayesian functional approach. Production and Operations Management 32(2) 655–673.
+
+<br />
+Dew R, Ansari A. 2018. Bayesian nonparametric customer base analysis with model-based visualizations. Marketing Science 37(2) 216–235.
 
 
