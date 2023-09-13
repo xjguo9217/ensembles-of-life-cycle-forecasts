@@ -7,7 +7,6 @@
 # In this script, we generate Bayesian ensemble forecasts of Intel microprocessors sales.
 # We consider TiGo-ETS models as candidate models.
 library(zoo)
-library(Metrics)
 options(warn=-1)
 
 # Load in the data of time series and start/end dates of each time series
@@ -185,7 +184,6 @@ for (i in 1:86) {
 }
 
 # Print out average accuracy results
-accuracy_result[which(accuracy_result == Inf)] <- NA
 result_vec <- t(2*c(mean(rowMeans(apply(accuracy_result[,,1:8,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
                     mean(rowMeans(apply(apply(accuracy_result[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
                     mean(rowMeans(apply(accuracy_result[,,9:17,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
