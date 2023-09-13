@@ -8,7 +8,6 @@
 
 # Load in the lubridate package
 library(lubridate)
-library(Metrics)
 options(warn=-1)
 
 # Load in data and unnormalize the normalized life cycles
