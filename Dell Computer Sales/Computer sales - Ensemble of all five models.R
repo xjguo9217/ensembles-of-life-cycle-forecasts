@@ -96,8 +96,6 @@ TiGoModel1 <- fitModel_ets
 accuracy_result <- array(NA,dim = c(170,82,24,100))
 n_drop <- unique(n_drop)
 
-n1 = 0
-n2 = 0
 # Calculate Bayesian ensembles and evaluate accuracy
 for (i in 1:170) {
   y1 <- as.numeric(timeSeriesDell[i,])
@@ -236,18 +234,13 @@ for (i in 1:170) {
     for (mm in 1:99) {
       accuracy_result[i,t+1,1:ntest,mm] <- pinball(forecast_ntest[,mm], ytest, mm/100)
     }
-    if (which.max(weights)%in%c((length(n_complete)*4+1):(length(n_complete)*5))) n1 = n1+1
-    n2 = n2+1
-    accuracy_result[i,t+1,1:ntest,100] <- sapply(1:ntest,function(x) smape(ytest[x],forecast_ntest[x,50]))
   }
 }
 
 # Print out average accuracy results
 result_vec <- t(2*c(mean(rowMeans(apply(accuracy_result[,,1:8,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                    mean(rowMeans(apply(accuracy_result[,,1:8,100],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)/2,
                     mean(rowMeans(apply(apply(accuracy_result[,,1:8,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
                     mean(rowMeans(apply(accuracy_result[,,9:17,50],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE),
-                    mean(rowMeans(apply(accuracy_result[,,9:17,100],c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)/2,
                     mean(rowMeans(apply(apply(accuracy_result[,,9:17,1:99],c(1,2,3),mean),c(1,3),mean,na.rm=TRUE), na.rm=TRUE),na.rm=TRUE)))
-colnames(result_vec) <- c("1-12 steps MAE","1-12 steps MAPE","1-12 steps MCRPS","13-24 steps MAE","13-24 steps MAPE","13-24 steps MCRPS")
+colnames(result_vec) <- c("1-8 steps MAE","1-8 steps MCRPS","9-17 steps MAE","9-17 steps MCRPS")
 result_vec
