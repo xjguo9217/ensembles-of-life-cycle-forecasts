@@ -23,7 +23,6 @@ Bayesian updating approaches:<br />
 Bass model updated using Extended Kalman Filter with Continuous State and Discrete Observations<br />
 Tilted-Gompertz model updated using Kalman Filter<br />
 Bayesian Functional Regression (This benchmark model used in the paper is not uploaded here. The code file has been shared privately by the authors of Lei et al. (2023).)<br />
-<br />
 Bayesian non-parametric model (Based on code provided in Dew et al. 2018)<br />
 <br />
 Other approaches:<br />
