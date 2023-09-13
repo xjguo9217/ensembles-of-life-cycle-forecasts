@@ -48,7 +48,6 @@ for (j in 1:86) {
   if (tail(exp(TiGoModel$states[,2]),1)>1) n_drop <- c(n_drop,j)
 }
 
-rec = c(0,0)
 # Set up the accuracy matrix
 accuracy_result <- array(NA,dim = c(86,187,17,99))
 n_drop <- unique(n_drop) 
@@ -100,7 +99,6 @@ for (i in 1:86) {
       if (t == 0 && (par[3] >= 1 & par[3]/(1-par[3])*(par[5]-log(par[6])/(1-par[3]))<=0)) n_remove <- c(n_remove,kk)
       if (t > 0 && (par[3] >= 1 & par[3]/(1-par[3])*(tail(fit$trend,1)-log(par[6])/(1-par[3]))<=0)) n_remove <- c(n_remove,kk) # remove the model if rho_t < 0 and therefore it is not a life cycle model
       # find the median and variance vectors used to calculate the likelihood of the on-going life cycle's past data according to candidate model kk.
-      if (length(n_remove) > 0) rec <- rbind(rec,c(i,t))
       if (t>0) update_median[kk,1:t] <- exp(fitted) 
       sigma2Values_TiGo1[kk] <- sigma2Values_TiGo[n_complete[kk]] 
       forc1 <- forecast.TiGo.ETS(TiGoModel1,h=ntest,level = 99.9)
