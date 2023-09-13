@@ -8,7 +8,7 @@
 # Candidate models considered here include the Bass, Gamma/shifted Gompertz and Trapezoid models.
 
 # Choose a model
-model_select <- 'TiGoTI' # This can be set to Bass, GSG, Trap or TiGoTI
+model_select <- 'Bass' # This can be set to Bass, GSG, Trap or TiGoTI
 
 # Load in the lubridate package
 library(lubridate)
@@ -31,7 +31,7 @@ if (model_select == 'Bass') source('Source Code/Bass.R')
 if (model_select == 'GSG') source('Source Code/GSG.R')
 if (model_select == 'Trap') source('Source Code/Trap.R')
 if (model_select == 'TiGoTI') {
-  source('Source Code/TiGoNLS.R')
+  source('Source Code/TiGo-NLS.R')
 }
 
 # Set up a function for calculating the pinball loss
