@@ -8,7 +8,6 @@
 
 # Load in the lubridate and deSolve package
 library(deSolve)
-library(Metrics)
 library(zoo)
 source('Source code/Bass.R') # Load in functions for the Bass model.
 options(warn=-1)
