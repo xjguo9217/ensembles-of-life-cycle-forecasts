@@ -5,6 +5,7 @@ This repository provides data and R scripts used in our paper "Bayesian Ensemble
 ### Data:<br />
 Google search interests of social networking websites <br />
 Dell computer sales (Acimovic et al. 2018)<br />
+Intel microprocessors sales (Manary and Willems 2022)
 <br />
 ### Forecasting methods:<br />
 Bayesian ensembles of single model type: <br />
@@ -23,7 +24,7 @@ Bayesian updating approaches:<br />
 Bass model updated using Extended Kalman Filter with Continuous State and Discrete Observations<br />
 Tilted-Gompertz model updated using Kalman Filter<br />
 Bayesian Functional Regression (This benchmark model used in the paper is not uploaded here. The code file has been shared privately by the authors of Lei et al. (2023).)<br />
-Bayesian non-parametric model (Based on code provided in Dew et al. 2018)<br />
+Bayesian non-parametric model (Based on code provided in the appendix of Dew et al. 2018)<br />
 <br />
 Other approaches:<br />
 Quantile Regression Forest<br />
@@ -32,9 +33,10 @@ LightGBM<br />
 ### Reference:
 Acimovic J, Erize F, Hu K, Thomas DJ, Van Mieghem JA. 2019. Product life cycle data set: Raw and cleaned data of weekly orders for personal computers. Manufacturing & Service Operations Management 21(1) 171–176.
 
+Dew R, Ansari A. 2018. Bayesian nonparametric customer base analysis with model-based visualizations. Marketing Science 37(2) 216–235.
+
 Lei D, Hu H, Geng D, Zhang J, Qi Y, Liu S, Shen ZM. 2023. New product life cycle curve modeling and forecasting with product attributes and promotion: A bayesian functional approach. Production and Operations Management 32(2) 655–673.<br />
 
-<br />
-Dew R, Ansari A. 2018. Bayesian nonparametric customer base analysis with model-based visualizations. Marketing Science 37(2) 216–235.
+Manary MP, Willems SP. 2022. Data set: 187 weeks of customer forecasts and orders for microprocessors from intel corporation. Manufacturing & Service Operations Management 24(1) 682–689.
 
 
