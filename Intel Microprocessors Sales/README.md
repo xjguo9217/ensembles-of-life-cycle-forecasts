@@ -3,7 +3,7 @@ Code for the Bayesian Functional Regression used in the paper is not uploaded he
 
 This folder contains the following R scripts and data files:
 
-Intel_actual_demand.csv: Raw sales data of Intel microprocessors. 
+Intel_actual_demand.csv: Raw sales data of Intel microprocessors.  <br />
 startend_date.csv: Start and end week of the product. <br />
 The above two data sets were published in Manary and Willems (2022).<br />
 <br /> 
